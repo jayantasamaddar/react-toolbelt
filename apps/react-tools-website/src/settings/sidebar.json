@@ -1,0 +1,64 @@
+[
+  {
+    "id": "1",
+    "name": "docs",
+    "title": "Documentation",
+    "url": "/docs"
+  },
+  {
+    "id": "4",
+    "name": "getting-started",
+    "title": "Getting Started",
+    "items": [
+      {
+        "id": "4a",
+        "name": "installation",
+        "title": "Installation",
+        "url": "/docs/installation"
+      },
+      {
+        "id": "4b",
+        "name": "version-support",
+        "title": "Version Support",
+        "url": "/docs/version-support"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "hooks",
+    "title": "Hooks",
+    "items": [
+      {
+        "id": "5a",
+        "name": "use-click",
+        "title": "useClick",
+        "url": "/docs/use-click"
+      },
+      {
+        "id": "5b",
+        "name": "use-change",
+        "title": "useChange",
+        "url": "/docs/use-change"
+      },
+      {
+        "id": "5c",
+        "name": "use-key",
+        "title": "useKey",
+        "url": "/docs/use-key"
+      },
+      {
+        "id": "5d",
+        "name": "use-resize",
+        "title": "useResize",
+        "url": "/docs/use-resize"
+      },
+      {
+        "id": "5e",
+        "name": "use-scroll",
+        "title": "useScroll",
+        "url": "/docs/use-scroll"
+      }
+    ]
+  }
+]

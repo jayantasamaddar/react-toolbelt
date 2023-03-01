@@ -1,0 +1,56 @@
+{
+  "name": "react-tools-website",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Jayanta Samaddar <jayanta@zenius.one>",
+  "repository": {
+    "url": "https://github.com/jayantasamaddar/react-hooks-dom.git",
+    "type": "git",
+    "directory": "apps/react-tools-website"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "format-check": "prettier --check src",
+    "clean": "rm -rf .next",
+    "clean:cache": "rm -rf .turbo",
+    "clean:docs": "ts-node src/config/clean.ts",
+    "clean:all": "yarn clean && yarn clean:cache && rm -rf node_modules && yarn clean:docs",
+    "docsgen": "ts-node src/config/docsgen.ts",
+    "ts-check": "tsc --noemit",
+    "run-checks": "yarn docsgen && yarn format-check && yarn lint && yarn ts-check"
+  },
+  "dependencies": {
+    "@next/font": "13.1.6",
+    "@next/mdx": "^13.2.1",
+    "@react-icons/all-files": "^4.1.0",
+    "@react-tools/hooks": "*",
+    "next": "^13.2.0",
+    "prismjs": "^1.29.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "sharp": "^0.31.3"
+  },
+  "devDependencies": {
+    "@react-tools/utils": "*",
+    "@types/mdx": "^2.0.3",
+    "@types/node": "18.14.0",
+    "@types/prismjs": "^1.26.0",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "@types/react-syntax-highlighter": "^15.5.6",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.34.0",
+    "eslint-config-next": "13.1.6",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.4",
+    "prettier-plugin-tailwindcss": "^0.2.3",
+    "tailwindcss": "^3.2.7",
+    "ts-node": "^10.9.1",
+    "typescript": "4.9.5"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "exclude": [
+    "node_modules",
+    "config/jest/*",
+    ".cache",
+    "coverage",
+    "examples",
+    "jest.config.js",
+    "config/.storybook/main.js",
+    "lib/**/*",
+    "esm/**/*",
+    "cjs/**/*"
+  ],
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["DOM", "ES6", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmitOnError": true,
+    "allowJs": true,
+    "baseUrl": "."
+  }
+}

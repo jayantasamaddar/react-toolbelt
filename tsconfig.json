@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "src/react-tools-*/src/",
+    "./docs/src",
+    "./scripts",
+    "./config/types",
+    "./tests"
+  ],
+  "exclude": [
+    "public",
+    ".cache",
+    "examples",
+    "config/jest",
+    "node_modules",
+    "apps/**/*.*",
+    "src/react-tools-*/**/*.test.*",
+    "src/react-tools-*/dist/**/*",
+    "src/react-tools-*/esm/**/*",
+    "src/react-tools-*/types/**/*",
+    "src/react-tools-*/cjs/**/*",
+    "src/react-tools-*/coverage",
+    "src/react-tools-*/.turbo"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@react-tools/*": ["src/react-tools-*/src"]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "singleQuote": true,
+  "proseWrap": "always",
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "semi": true,
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "pluginSearchDirs": false,
+  "tailwindConfig": "./tailwind.config.js"
+}

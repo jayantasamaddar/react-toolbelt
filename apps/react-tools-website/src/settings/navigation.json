@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "docs",
+    "title": "Docs",
+    "link": "internal",
+    "url": "/docs"
+  },
+  {
+    "id": 2,
+    "name": "showcase",
+    "title": "Showcase",
+    "link": "internal",
+    "url": "/showcase"
+  },
+  {
+    "id": 3,
+    "name": "projects",
+    "title": "Projects",
+    "link": "internal",
+    "url": "/projects"
+  },
+  {
+    "id": 4,
+    "name": "sponsor",
+    "title": "Sponsor",
+    "link": "internal",
+    "url": "/docs/sponsor"
+  }
+]
