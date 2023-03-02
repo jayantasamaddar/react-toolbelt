@@ -1,6 +1,6 @@
 const ci_check = () => {
-  if (!process.env.CI !== undefined) return 'false';
-  else 'true';
+  if (!Boolean(process.env.CI)) return 'false';
+  else return 'true';
 };
 
 process.stdout.write(ci_check());
