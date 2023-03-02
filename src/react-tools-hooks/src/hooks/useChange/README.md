@@ -1,7 +1,7 @@
 # useChange
 
 `useChange` is a custom React hook that allows you to add change event listeners
-to your components. This hook is implemented using the `@react-tools/dom`
+to your components. This hook is implemented using the `@react-tools/hooks`
 package.
 
 It takes two parameters, a `ref` and a `callback` function.
@@ -35,7 +35,7 @@ Returns `undefined`. Use the `cb` function to handle the `EventTarget` object.
 ## Syntax
 
 ```jsx
-import { useChange } from '@react-tools/dom';
+import { useChange } from '@react-tools/hooks';
 
 useChange(ref.current, (target) => {
   // At every change event, you have access to the EventTarget object
@@ -51,7 +51,7 @@ Here's an example of how you can use `useChange` in your React component:
 ```javascript
 /** Controlled Components and Validations in a Form using the useChange hook */
 import { useRef, useState } from 'react';
-import { useChange } from '@react-tools/dom';
+import { useChange } from '@react-tools/hooks';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({

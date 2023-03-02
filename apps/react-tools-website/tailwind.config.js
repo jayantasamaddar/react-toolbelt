@@ -9,18 +9,21 @@ module.exports = {
         'grid-gradient':
           'linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.1) 50%)'
       },
+      height: {
+        header: 'var(--header-logo-h)'
+      },
       colors: {
         theme: {
-          background: '#06001a',
-          primary: '#0C0032',
-          'primary-2': '#190061',
-          accent: '#240090',
-          'accent-2': '#3500D3',
-          'accent-3': '#6C71FB',
-          complementary: '#A9AD05',
-          'ds-complementary': '#1495FA',
-          secondary: '#282828',
-          tertiary: '#7510F7'
+          background: 'var(--color-background)',
+          primary: 'var(--color-primary)',
+          'primary-2': 'var(--color-primary-2)',
+          accent: 'var(--color-accent)',
+          'accent-2': 'var(--color-accent-2)',
+          'accent-3': 'var(--color-accent-3)',
+          complementary: 'var(--color-complementary)',
+          'ds-complementary': 'var(--color-ds-complementary)',
+          secondary: 'var(--color-secondary)',
+          tertiary: 'var(--color-tertiary)'
         }
       },
       fontFamily: {

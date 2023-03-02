@@ -135,7 +135,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLInputElement, ButtonProps>(
 
     const childMarkup =
       typeof children === 'string' ? (
-        <span className="RHD-ButtonText">{children}</span>
+        <span className="RT-ButtonText">{children}</span>
       ) : (
         children
       );
@@ -151,7 +151,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLInputElement, ButtonProps>(
       iconMarkup = iconOnly ? (
         iconSource
       ) : (
-        <span className="ReactTools-ButtonIcon inline-flex items-center justify-center gap-1">
+        <span className="RT-ButtonIcon inline-flex items-center justify-center gap-1">
           {iconSource} {childMarkup}
         </span>
       );
@@ -219,7 +219,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLInputElement, ButtonProps>(
     /***************************************************************************************/
 
     return (
-      <div className="RHD-ButtonContainer inline-flex items-center justify-center">
+      <div className="RT-ButtonContainer inline-flex items-center justify-center">
         {buttonMarkup}
         {uploadMarkup}
       </div>

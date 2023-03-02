@@ -2,7 +2,7 @@
 
 The `useKey` hook is a custom React Hook that allows you to listen for key
 events on a specific DOM element. It returns a reference to the most recently
-used key. This hook is implemented using the `@react-tools/dom` package.
+used key. This hook is implemented using the `@react-tools/hooks` package.
 
 It takes three parameters, an `element`, the key `event` and a `callback`
 function.
@@ -55,7 +55,7 @@ object.
 ## Syntax
 
 ```jsx
-import { useKey } from '@react-tools/dom';
+import { useKey } from '@react-tools/hooks';
 
 const targetKey = useKey(element, event, (args) => {
   console.log(args.key);
@@ -75,7 +75,7 @@ expanded mobile menu when the `Escape` key is pressed.
 ```javascript
 /** Listening for the Escape Key */
 import { useRef, useState } from 'react';
-import { useKey } from '@react-tools/dom';
+import { useKey } from '@react-tools/hooks';
 
 const [showMenu, setShowMenu] = useState(false);
 const burgerRef = useRef < HTMLButtonElement > null;

@@ -2,6 +2,6 @@
 
 import PageContent from './content.mdx';
 
-export default function Sponsors() {
+export default function Sponsor() {
   return <PageContent />;
 }

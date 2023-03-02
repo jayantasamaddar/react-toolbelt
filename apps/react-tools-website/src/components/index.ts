@@ -12,3 +12,4 @@ export * from './Logo';
 export * from './Main';
 export * from './Sidebar';
 export * from './Spinner';
+export * from './WordShuffle';

@@ -24,8 +24,6 @@ export const Header = (): ReactElement => {
   /**********************************************************************************/
   /** Handle SideEffects */
   /**********************************************************************************/
-  //   const { width: windowWidth } = useResize();
-
   const { width: windowWidth } = useResize();
   const { scrollDirection: direction } = useScroll();
 
@@ -49,27 +47,11 @@ export const Header = (): ReactElement => {
     }
   }, [showMenu]);
 
-  /** Enable feature: Click outside to close (also closes if clicked on menu links) */
-  //   useEffect(() => {
-  //     const handler = ({ target }) => {
-  //       if (
-  //         (target.closest('nav#RHD-HeaderMenu') === menuRef.current &&
-  //           target.tagName !== 'A') ||
-  //         target.closest('button#RHD-BurgerMenu') === burgerRef.current
-  //       )
-  //         return;
-  //       else setShowMenu(false);
-  //     };
-
-  //     window.addEventListener('click', handler);
-  //     return () => window.removeEventListener('click', handler);
-  //   }, []);
-
   useClick(undefined, (target) => {
     if (
-      (target.closest('nav#RHD-HeaderMenu') === menuRef.current &&
+      (target.closest('nav#RT-HeaderMenu') === menuRef.current &&
         target.tagName !== 'A') ||
-      target.closest('button#RHD-BurgerMenu') === burgerRef.current
+      target.closest('button#RT-BurgerMenu') === burgerRef.current
     )
       return;
     else setShowMenu(false);
@@ -85,17 +67,6 @@ export const Header = (): ReactElement => {
   };
 
   /** Enable Key Accessibility */
-  // const handleKeys = (e: KeyboardEvent<HTMLButtonElement>) => {
-  //   switch (e.key) {
-  //     // Close expanded mobile menu
-  //     case 'Escape':
-  //       if (showMenu) setShowMenu(false);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
-
   useKey(burgerRef?.current ?? undefined, 'up', ({ key }) => {
     switch (key) {
       // Close expanded mobile menu
@@ -124,24 +95,24 @@ export const Header = (): ReactElement => {
           onClick={() => setShowMenu((prev) => !prev)}
           active={showMenu}
           // onKeyUp={handleKeys}
-          ariaControls="RHD-HeaderMenu"
+          ariaControls="RT-HeaderMenu"
         />
       )}
-      <div className="RHD-HeaderLogo relative flex h-full w-full items-center justify-center md:static md:w-auto">
-        <Logo className="absolute left-[calc(50%-25px)] top-[calc(50%-6.6416px)] md:static" />
+      <div className="RT-HeaderLogo relative flex h-full w-full items-center justify-center md:static md:w-auto">
+        <Logo className="absolute left-[calc(50%-var(--header-logo-h)/2)] top-[calc(50%-var(--header-logo-h)/2)] h-header md:static" />
       </div>
 
       {showMenu && (
         <section className="relative mt-[calc(var(--header-min-h)*2)] flex h-full md:mt-0">
           <nav
-            id="RHD-HeaderMenu"
+            id="RT-HeaderMenu"
             role="menubar"
-            className="RHD-Navigation fixed left-0 top-[--header-min-h] flex max-h-screen w-1/2 flex-col md:static md:max-h-full md:w-auto md:flex-row"
+            className="RT-Navigation max-h-auto fixed left-0 top-[--header-min-h] flex h-screen w-1/2 flex-col overflow-y-auto bg-theme-primary-2 md:static md:h-full md:w-auto md:flex-row md:bg-transparent"
             ref={menuRef}
             {...menuOrientation}
           >
             <ul
-              className="RHD-NavigationMenuList flex h-screen flex-col gap-5 bg-theme-primary-2 p-5 md:h-auto md:flex-row md:bg-transparent"
+              className="RT-NavigationMenuList md:max-h-auto flex max-h-screen flex-col gap-5 p-5 md:flex-row"
               role="menu group"
               {...menuOrientation}
             >

@@ -2,7 +2,7 @@
 
 The `useClick` hook is a custom React hook that allows you to add click event
 listeners to your components. This hook is implemented using the
-`@react-tools/dom` package.
+`@react-tools/hooks` package.
 
 It takes two parameters, a `ref` and a `callback` function.
 
@@ -19,7 +19,7 @@ defaults to the document object).
 
 ### `callback`: (target: HTMLElement | EventTarget) => void
 
-A callback function to execute when the key event is fired (optional). This
+A callback function to execute when the `click` event is fired (optional). This
 function takes one parameter, target, which is the DOM element that was clicked.
 
 ---
@@ -35,7 +35,7 @@ Returns `undefined`. Use the `cb` function to handle the `EventTarget` object.
 Here's an example of how you can use `useClick` in your React component:
 
 ```jsx
-import { useClick } from '@react-tools/dom';
+import { useClick } from '@react-tools/hooks';
 
 useClick(undefined, (target) => {
   if (

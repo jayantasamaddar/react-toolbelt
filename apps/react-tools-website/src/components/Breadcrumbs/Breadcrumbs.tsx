@@ -2,12 +2,11 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import sidebar from '../../settings/sidebar.json' assert { type: 'json' };
+import sidebar from '../../settings/sidebar.json';
 import { FaHome } from '@react-icons/all-files/fa/FaHome';
 import { Button } from '../Button';
-import { getBaseUrl } from '@/utilities';
 
-export const getTitle = (
+const getTitle = (
   stub: string,
   items: typeof sidebar = sidebar
 ): string | undefined => {
@@ -23,7 +22,6 @@ export const getTitle = (
 
 export const Breadcrumbs = () => {
   const path = usePathname();
-  const hostname = getBaseUrl();
 
   const pathArray = path?.split('/') ?? [];
 
@@ -31,7 +29,7 @@ export const Breadcrumbs = () => {
     <section>
       <ul role="navigation" className="inline-flex items-center gap-2 text-sm">
         <li className="inline-flex items-center text-theme-accent-3 transition-colors hover:text-slate-300">
-          <Button url={hostname} icon={<FaHome />} />
+          <Button url="/" icon={<FaHome />} />
         </li>
 
         {pathArray.map((path, index) => {
@@ -47,7 +45,7 @@ export const Breadcrumbs = () => {
                   : ''
               }  text-theme-accent-3 transition-colors hover:text-slate-300`}
             >
-              <Link href={`${hostname}${linkTo}`}>{getTitle(path)}</Link>
+              <Link href={linkTo}>{getTitle(path)}</Link>
             </li>
           );
         })}

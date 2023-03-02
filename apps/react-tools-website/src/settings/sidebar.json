@@ -1,23 +1,23 @@
 [
   {
-    "id": "1",
+    "id": "docs",
     "name": "docs",
     "title": "Documentation",
     "url": "/docs"
   },
   {
-    "id": "4",
+    "id": "getting-started",
     "name": "getting-started",
     "title": "Getting Started",
     "items": [
       {
-        "id": "4a",
+        "id": "installation",
         "name": "installation",
         "title": "Installation",
         "url": "/docs/installation"
       },
       {
-        "id": "4b",
+        "id": "version-support",
         "name": "version-support",
         "title": "Version Support",
         "url": "/docs/version-support"
@@ -25,36 +25,42 @@
     ]
   },
   {
-    "id": "5",
+    "id": "hooks",
     "name": "hooks",
     "title": "Hooks",
     "items": [
       {
-        "id": "5a",
+        "id": "use-click",
         "name": "use-click",
         "title": "useClick",
         "url": "/docs/use-click"
       },
       {
-        "id": "5b",
+        "id": "use-change",
         "name": "use-change",
         "title": "useChange",
         "url": "/docs/use-change"
       },
       {
-        "id": "5c",
+        "id": "use-hover",
+        "name": "use-hover",
+        "title": "useHover",
+        "url": "/docs/use-hover"
+      },
+      {
+        "id": "use-key",
         "name": "use-key",
         "title": "useKey",
         "url": "/docs/use-key"
       },
       {
-        "id": "5d",
+        "id": "use-resize",
         "name": "use-resize",
         "title": "useResize",
         "url": "/docs/use-resize"
       },
       {
-        "id": "5e",
+        "id": "use-scroll",
         "name": "use-scroll",
         "title": "useScroll",
         "url": "/docs/use-scroll"

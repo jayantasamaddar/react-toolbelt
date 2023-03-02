@@ -2,7 +2,7 @@
 
 The `useScroll` is a custom React Hook used to detect the scrolling direction of
 a given element and returns an object with two properties: `scrollDirection` and
-`scrollValues`. This hook is implemented using the `@react-tools/dom` package.
+`scrollValues`. This hook is implemented using the `@react-tools/hooks` package.
 
 It takes two parameters, an `element` and a `callback` function that can be used
 to perform some action on the detected scrolling `direction` and scroll
@@ -31,7 +31,7 @@ changed.
 ## Syntax
 
 ```jsx
-import { useScroll } from '@react-tools/dom';
+import { useScroll } from '@react-tools/hooks';
 
 const MyComponent = () => {
   const handleScroll = (direction, values) => {
@@ -69,7 +69,7 @@ Here's an example of how to use the `useScroll` hook to hide a header component
 when the scroll direction is down:
 
 ```jsx
-import { useScroll } from '@react-tools/dom';
+import { useScroll } from '@react-tools/hooks';
 
 const Header = () => {
   const { scrollDirection } = useScroll();

@@ -4,17 +4,35 @@
 // import { Inter } from '@next/font/google';
 // import styles from './page.module.css';
 
-import { Button } from '@/components';
+import { Button, WordShuffle } from '@/components';
 
 // const inter = Inter({ subsets: ['latin'] });
 
+const WORDS = [
+  'supercharge',
+  'amplify',
+  'elevate',
+  'ignite',
+  'turbocharge',
+  'optimize',
+  'boost',
+  'skyrocket',
+  'transcend',
+  'invigorate'
+];
+
 export default function Home() {
   return (
-    <div className="RHD-Home h-full w-full p-5 text-white">
-      <section className="RDH-HeroSection flex h-full w-full flex-col items-center justify-center gap-8 px-10">
+    <div className="RT-Home h-full w-full p-5 text-white">
+      <section className="RT-HeroSection flex h-full w-full flex-col items-center justify-center gap-8 px-10">
         <h1 className="text-center text-7xl md:text-8xl">React Tools</h1>
-        <p className="text-center text-xl md:text-2xl">
-          Tools to speed up the React Developer Experience
+        <p className="text-center text-xl leading-loose md:text-2xl">
+          <span>Tools to </span>
+          <WordShuffle
+            className="border-b border-b-white bg-theme-accent-2 px-1.5 pt-0.5 font-bold"
+            words={WORDS}
+          />
+          <span> your React Developer Experience</span>
         </p>
         <Button primary url="/docs">
           Go to Docs
