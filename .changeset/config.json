@@ -5,8 +5,8 @@
     { "repo": "jayantasamaddar/react-tools" }
   ],
   "commit": false,
-  "fixed": [["@react-tools/*"]],
-  "linked": [["react-tools-website", "@react-tools/*"]],
+  "fixed": [],
+  "linked": [],
   "access": "restricted",
   "baseBranch": "origin/main",
   "updateInternalDependencies": "patch",
