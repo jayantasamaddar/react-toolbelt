@@ -8,7 +8,9 @@
     "apps/*"
   ],
   "main": "index.ts",
+  "homepage": "https://reacttools.vercel.app",
   "repository": "https://github.com/jayantasamaddar/react-dom-hooks.git",
+  "bugs": "https://github.com/jayantasamaddar/react-tools/issues",
   "author": "Jayanta Samaddar <jayanta@zenius.one>",
   "license": "MIT",
   "devDependencies": {
@@ -31,12 +33,12 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/node": "18.14.2",
     "@types/prismjs": "^1.26.0",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
     "@typescript-eslint/eslint-plugin": "5.54.0",
     "@typescript-eslint/parser": "5.54.0",
     "autoprefixer": "^10.4.13",
-    "eslint": "8.35.0",
+    "eslint": "^8.35.0",
     "eslint-config-next": "13.2.3",
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.0",
@@ -48,11 +50,12 @@
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.3",
     "prismjs": "^1.29.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "rollup": "3.18.0",
     "rollup-plugin-node-externals": "^5.1.2",
     "rollup-plugin-summary": "^2.0.0",
+    "syncpack": "^9.8.4",
     "tailwindcss": "^3.2.7",
     "ts-node": "^10.9.1",
     "turbo": "1.8.3",
@@ -73,7 +76,8 @@
     "lint": "turbo lint",
     "ts-check": "tsc --noemit",
     "run-checks": "turbo run-checks",
+    "syncpack": "syncpack list-mismatches",
     "docsgen": "turbo run docsgen",
-    "release": "yarn build:packages && changeset publish"
+    "release": "turbo run build --filter=./src/* && changeset publish"
   }
 }
