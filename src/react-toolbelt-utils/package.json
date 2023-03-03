@@ -1,0 +1,52 @@
+{
+  "name": "@react-toolbelt/utils",
+  "version": "0.1.0",
+  "description": "Helper functions and utilities for React to perform everyday tasks faster.",
+  "author": "Jayanta Samaddar <jayanta@zenius.one>",
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": ["dist/"],
+  "repository": {
+    "url": "https://github.com/jayantasamaddar/react-hooks-dom.git",
+    "type": "git",
+    "directory": "src/react-tools-utils"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "keywords": [
+    "react",
+    "react-utils",
+    "dom",
+    "react-tools",
+    "typescript",
+    "javascript"
+  ],
+  "scripts": {
+    "build": "yarn build:types && yarn build:js",
+    "build-docs": "cp './src/**/*.md' './dist/docs'",
+    "build:js": "rollup -c",
+    "build:types": "tsc --declarationDir dist/types --declaration --emitDeclarationOnly",
+    "clean": "rm -rf dist .rollup.cache",
+    "clean:all": "rm -rf dist node_modules .rollup.cache",
+    "format": "prettier --write src",
+    "format-check": "prettier --check src",
+    "test": "jest",
+    "test:w": "jest --watch",
+    "test:wa": "jest --watchAll",
+    "test:c": "jest --coverage",
+    "test:cv": "clear && jest --coverage --verbose",
+    "lint": "eslint --cache --cache-location '/.eslintcache'",
+    "ts-check": "tsc --noemit",
+    "run-checks": "yarn ts-check && yarn lint && yarn format-check && yarn test"
+  },
+  "devDependencies": {
+    "@types/react": ">=16.8.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  }
+}

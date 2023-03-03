@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "include": [
-    "src/react-tools-*/src/",
+    "src/react-toolbelt-*/src/",
     "./docs/src",
     "./scripts",
     "./config/types",
@@ -14,17 +14,17 @@
     "config/jest",
     "node_modules",
     "apps/**/*.*",
-    "src/react-tools-*/**/*.test.*",
-    "src/react-tools-*/dist/**/*",
-    "src/react-tools-*/esm/**/*",
-    "src/react-tools-*/types/**/*",
-    "src/react-tools-*/cjs/**/*",
-    "src/react-tools-*/coverage",
-    "src/react-tools-*/.turbo"
+    "src/react-toolbelt-*/**/*.test.*",
+    "src/react-toolbelt-*/dist/**/*",
+    "src/react-toolbelt-*/esm/**/*",
+    "src/react-toolbelt-*/types/**/*",
+    "src/react-toolbelt-*/cjs/**/*",
+    "src/react-toolbelt-*/coverage",
+    "src/react-toolbelt-*/.turbo"
   ],
   "compilerOptions": {
     "paths": {
-      "@react-tools/*": ["src/react-tools-*/src"]
+      "@react-toolbelt/*": ["src/react-toolbelt-*/src"]
     }
   }
 }

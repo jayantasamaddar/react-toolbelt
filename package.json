@@ -1,16 +1,16 @@
 {
-  "name": "react-dom-hooks-monorepo",
+  "name": "react-toolbelt-monorepo",
   "version": "0.0.0",
   "private": true,
-  "description": "React DOM Hooks - Monorepo",
+  "description": "React Toolbelt - Monorepo",
   "workspaces": [
     "src/*",
     "apps/*"
   ],
   "main": "index.ts",
-  "homepage": "https://reacttools.vercel.app",
-  "repository": "https://github.com/jayantasamaddar/react-dom-hooks.git",
-  "bugs": "https://github.com/jayantasamaddar/react-tools/issues",
+  "homepage": "https://react-toolbelt.vercel.app",
+  "repository": "https://github.com/jayantasamaddar/react-toolbelt.git",
+  "bugs": "https://github.com/jayantasamaddar/react-toolbelt/issues",
   "author": "Jayanta Samaddar <jayanta@zenius.one>",
   "license": "MIT",
   "devDependencies": {
@@ -80,7 +80,7 @@
     "syncpack": "syncpack list-mismatches",
     "docsgen": "turbo run docsgen",
     "release": "turbo run build:packages && changeset publish",
-    "release:utils": "turbo run build --filter=@react-tools/utils && changeset publish",
-    "release:others": "turbo run build --filter=./src/* --filter=!{@react-tools/utils} && changeset publish"
+    "release:utils": "turbo run build --filter=@react-toolbelt/utils && changeset publish",
+    "release:others": "turbo run build --filter=./src/* --filter=!{@react-toolbelt/utils} && changeset publish"
   }
 }
