@@ -18,7 +18,7 @@ export default function RootLayout({
       <head />
       <body>
         <AppProvider>
-          <div className="RT-Container min-h-body bg-gradient-dark relative grid grid-cols-12 justify-items-stretch">
+          <div className="RT-Container bg-gradient-dark relative grid min-h-screen grid-cols-12 justify-items-stretch">
             <Header />
             <Main>{children}</Main>
           </div>

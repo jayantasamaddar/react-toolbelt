@@ -10,7 +10,28 @@ module.exports = {
           'linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.1) 50%)'
       },
       height: {
-        header: 'var(--header-logo-h)'
+        header: 'var(--header-min-h)',
+        logo: 'var(--header-logo-h)',
+        'body-screen': 'calc(100vh - var(--header-min-h))',
+        'body-full': 'calc(100% - var(--header-min-h))',
+        footer: 'var(--footer-min-h)'
+      },
+      minHeight: {
+        header: 'var(--header-min-h)',
+        logo: 'var(--header-logo-h)',
+        'body-screen': 'calc(100vh - var(--header-min-h))',
+        'body-full': 'calc(100% - var(--header-min-h))',
+        footer: 'var(--footer-min-h)'
+      },
+      maxHeight: {
+        header: 'var(--header-min-h)',
+        logo: 'var(--header-logo-h)',
+        'body-screen': 'calc(100vh - var(--header-min-h))',
+        'body-full': 'calc(100% - var(--header-min-h))',
+        footer: 'var(--footer-min-h)'
+      },
+      margin: {
+        header: 'var(--header-min-h)'
       },
       colors: {
         theme: {

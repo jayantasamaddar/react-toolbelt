@@ -9,12 +9,13 @@ import {
 } from 'react';
 import Link from 'next/link';
 
-import { Logo } from '@/components';
-import { BurgerMenu, HeaderIcons } from './components';
+import { Logo, IconList } from '@/components';
+import { BurgerMenu } from './components';
 import { useClick, useKey, useResize, useScroll } from '@react-tools/hooks';
 import type { AriaOrientation } from '@/types';
 
-import navigation from '../../settings/navigation.json';
+import navigation from '@/settings/navigation.json';
+import icons from '@/settings/social-icons';
 
 export const Header = (): ReactElement => {
   const [showMenu, setShowMenu] = useState(false);
@@ -84,7 +85,7 @@ export const Header = (): ReactElement => {
 
   return (
     <header
-      className="header-gradient-dark fixed z-1000 col-span-full m-0 flex h-[var(--header-min-h)] w-full items-center justify-between px-5 shadow transition-transform duration-300"
+      className="header-gradient-dark fixed z-1000 col-span-full m-0 flex h-header w-full items-center justify-between px-5 shadow transition-transform duration-300"
       role="region"
       aria-label="Header Region"
       data-scroll={direction.y}
@@ -99,20 +100,22 @@ export const Header = (): ReactElement => {
         />
       )}
       <div className="RT-HeaderLogo relative flex h-full w-full items-center justify-center md:static md:w-auto">
-        <Logo className="absolute left-[calc(50%-var(--header-logo-h)/2)] top-[calc(50%-var(--header-logo-h)/2)] h-header md:static" />
+        <Logo className="absolute left-[calc(50%-var(--header-logo-h)/2)] top-[calc(50%-var(--header-logo-h)/2)] h-logo md:static" />
       </div>
 
       {showMenu && (
-        <section className="relative mt-[calc(var(--header-min-h)*2)] flex h-full md:mt-0">
+        <section className="relative flex h-full">
           <nav
             id="RT-HeaderMenu"
             role="menubar"
-            className="RT-Navigation max-h-auto fixed left-0 top-[--header-min-h] flex h-screen w-1/2 flex-col overflow-y-auto bg-theme-primary-2 md:static md:h-full md:w-auto md:flex-row md:bg-transparent"
+            className={`RT-Navigation max-h-auto fixed left-0 top-[--header-min-h] mt-header flex h-body-full md:mt-0 ${
+              direction.y === 'up' ? 'min-h-body-screen' : 'min-h-screen'
+            } w-1/2 flex-col overflow-y-auto bg-theme-primary-2 duration-75 md:static md:h-auto md:min-h-full md:w-auto md:flex-row md:bg-transparent`}
             ref={menuRef}
             {...menuOrientation}
           >
             <ul
-              className="RT-NavigationMenuList md:max-h-auto flex max-h-screen flex-col gap-5 p-5 md:flex-row"
+              className="RT-NavigationMenuList md:max-h-auto flex flex-col gap-5 p-5 md:flex-row"
               role="menu group"
               {...menuOrientation}
             >
@@ -129,7 +132,7 @@ export const Header = (): ReactElement => {
                     name,
                     role: 'menuitem',
                     className:
-                      'border-b py-4 font-bold text-gray-400 hover:text-white md:text-theme-accent md:hover:text-theme-accent-2 md:py-0 md:border-0 transition-colors animate-fade-in'
+                      'border-b border-b-theme-accent-3 py-4 font-bold text-gray-400 hover:text-white md:text-theme-accent md:hover:text-theme-accent-2 md:py-0 md:border-0 transition-colors animate-fade-in'
                   },
                   <Element title={title} {...linkProps}>
                     {title}
@@ -137,11 +140,11 @@ export const Header = (): ReactElement => {
                 );
               })}
             </ul>
-            <HeaderIcons />
+            <IconList
+              icons={icons}
+              className="flex h-full items-end gap-5 p-5 md:h-auto md:items-center md:gap-4"
+            />
           </nav>
-          {/* <nav role="menubar" className="flex items-center">
-            
-          </nav> */}
         </section>
       )}
     </header>

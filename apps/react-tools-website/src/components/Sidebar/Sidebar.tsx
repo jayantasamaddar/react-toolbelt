@@ -98,7 +98,7 @@ function generateNavigationItem(
 ) {
   const linkMarkup = generateLinkMarkup(item, {
     className:
-      'block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300 hover:bg-theme-primary-2 dark:hover:bg-theme-primary-2 transition-colors'
+      'block border-l pl-4 -ml-px border-transparent hover:border-slate-400 dark:hover:border-slate-500 text-theme-accent-3 hover:text-slate-300 hover:bg-theme-primary-2 dark:hover:bg-theme-primary-2 transition-colors'
   });
 
   return (

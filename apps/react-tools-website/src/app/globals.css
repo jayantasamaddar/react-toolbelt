@@ -9,8 +9,8 @@
   --color-accent: #240090;
   --color-accent-2: #3500d3;
   --color-accent-3: #6c71fb;
-  --color-complimentary: #a9ad05;
-  --color-ds-complimentary: #1495fa;
+  --color-complementary: #a9ad05;
+  --color-ds-complementary: #1495fa;
   --color-secondary: #282828;
   --color-tertiary: #7510f7;
 
@@ -204,7 +204,7 @@ a {
     @apply opacity-0;
   }
   ul.RT-NavigationMenuList li a {
-    @apply py-4 pr-4;
+    @apply py-4 pr-4 md:py-0 md:pl-4 md:pr-0;
   }
   #RT-HeaderMenu.open {
     @apply animate-slide-in-left;
@@ -217,9 +217,6 @@ a {
   }
   .bg-gradient-dark {
     @apply bg-gradient-radial from-theme-background via-theme-primary to-theme-primary-2;
-  }
-  .min-h-body {
-    min-height: calc(100vh - var(--header-min-h));
   }
   .breadcrumb::after {
     content: '';

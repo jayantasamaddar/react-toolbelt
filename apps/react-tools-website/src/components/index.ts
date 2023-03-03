@@ -7,6 +7,7 @@ export * from './MDXCodeBlock';
 export * from './Footer';
 export * from './Header';
 export * from './Icon';
+export * from './IconList';
 export * from './Invisible';
 export * from './Logo';
 export * from './Main';

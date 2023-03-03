@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { MDXCodeBlock, Blockquote } from '@/components';
 
 function HorizontalRule() {
-  return <hr className="mt-6" />;
+  return <hr className="mt-6 border-t border-t-theme-primary-2" />;
 }
 
 function Paragraph({ children }: { children: ReactNode }) {
