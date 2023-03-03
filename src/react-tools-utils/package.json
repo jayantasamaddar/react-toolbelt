@@ -1,6 +1,6 @@
 {
   "name": "@react-tools/utils",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Helper functions and utilities for React to perform everyday tasks faster.",
   "author": "Jayanta Samaddar <jayanta@zenius.one>",
   "license": "MIT",
