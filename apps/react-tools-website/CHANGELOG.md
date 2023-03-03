@@ -1,0 +1,26 @@
+# react-tools-website
+
+## 0.1.0
+
+### Minor Changes
+
+- [`e682a71`](https://github.com/jayantasamaddar/react-tools/commit/e682a71b5fc78294b5756a4bc607cad5cb5ceaf6)
+  Thanks [@jayantasamaddar](https://github.com/jayantasamaddar)! - # First
+  Release
+
+  ## Packages
+
+  1. `@react-tools/hooks` - Collection of custom React hooks that makes the
+     React developer experience smoother.
+  2. `@react-tools/utils` - Helper functions and utilities for React to perform
+     everyday tasks faster.
+
+  ## Apps
+
+  1. `react-tools-website`: The initial version of the website is ready.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e682a71`](https://github.com/jayantasamaddar/react-tools/commit/e682a71b5fc78294b5756a4bc607cad5cb5ceaf6)]:
+  - @react-tools/hooks@0.1.0
