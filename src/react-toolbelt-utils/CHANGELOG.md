@@ -1,5 +1,15 @@
 # @react-toolbelt/utils
 
+## 0.1.1
+
+### Patch Changes
+
+- [`07b35e1`](https://github.com/jayantasamaddar/react-toolbelt/commit/07b35e1a217e8aa996064798dc9d13e89d9b4f49)
+  Thanks [@jayantasamaddar](https://github.com/jayantasamaddar)! - - [x] Added
+  `null` and `undefined` to possible arguments for checks for `isWindow`.
+  `isWindow` now checks whether the provided element in the argument strict
+  equals the `window` object or is an instance of the `Window` constructor.
+
 ## 0.1.0
 
 ### Minor Changes

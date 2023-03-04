@@ -1,13 +1,15 @@
 {
   "name": "@react-toolbelt/utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Helper functions and utilities for React to perform everyday tasks faster.",
   "author": "Jayanta Samaddar <jayanta@zenius.one>",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "repository": {
     "url": "https://github.com/jayantasamaddar/react-hooks-dom.git",
     "type": "git",
