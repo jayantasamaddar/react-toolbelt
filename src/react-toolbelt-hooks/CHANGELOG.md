@@ -1,5 +1,19 @@
 # @react-toolbelt/hooks
 
+## 0.1.1
+
+### Patch Changes
+
+- [`07b35e1`](https://github.com/jayantasamaddar/react-toolbelt/commit/07b35e1a217e8aa996064798dc9d13e89d9b4f49)
+  Thanks [@jayantasamaddar](https://github.com/jayantasamaddar)! - - [x]
+  Improved the performance of the `useResize` hook slightly. Further
+  improvements possible: Using a ref was found working but due to failed tests,
+  there was a rollback. Will update this in the next patch.
+  - [x] Exporting all types now that weren't previously being exported.
+- Updated dependencies
+  [[`07b35e1`](https://github.com/jayantasamaddar/react-toolbelt/commit/07b35e1a217e8aa996064798dc9d13e89d9b4f49)]:
+  - @react-toolbelt/utils@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes
