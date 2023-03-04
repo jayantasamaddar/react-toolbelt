@@ -1,5 +1,14 @@
 # react-toolbelt-website
 
+## 0.2.1
+
+### Patch Changes
+
+- [`bd86df7`](https://github.com/jayantasamaddar/react-toolbelt/commit/bd86df7c21b7b96b10a2930f7ab859b83d6aced6)
+  Thanks [@jayantasamaddar](https://github.com/jayantasamaddar)! - - [x]
+  Paragraph line-spacing increased on documentation page.
+  - [x] Removed trailing extra line from the code blocks.
+
 ## 0.2.0
 
 ### Minor Changes
