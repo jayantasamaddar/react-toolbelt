@@ -8,7 +8,7 @@ function HorizontalRule() {
 }
 
 function Paragraph({ children }: { children: ReactNode }) {
-  return <p className="text-sm">{children}</p>;
+  return <p className="text-sm leading-6">{children}</p>;
 }
 
 function ListItem({ children }: { children: ReactNode }) {

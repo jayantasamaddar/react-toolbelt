@@ -1,7 +1,7 @@
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-async-light';
 import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
 import ts from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
-import shell from 'react-syntax-highlighter/dist/esm/languages/prism/shell-session';
+import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
 import { theme } from './theme';
 import Normalize from './Normalizer';
 import { CodeStatusBar } from './components';
@@ -17,9 +17,9 @@ const longCodeFormat = {
   ts: 'typescript',
   typescript: 'typescript',
   jsx: 'jsx',
-  s: 'shell-session',
-  bash: 'sell-session',
-  shell: 'shell-session'
+  s: 'bash',
+  bash: 'bash',
+  shell: 'bash'
 };
 
 const nw = new Normalize({
@@ -44,7 +44,7 @@ export const MDXCodeBlock = ({
   if (match && lang && lang in longCodeFormat) {
     SyntaxHighlighter.registerLanguage('tsx', tsx);
     SyntaxHighlighter.registerLanguage('typescript', ts);
-    SyntaxHighlighter.registerLanguage('shell-session', shell);
+    SyntaxHighlighter.registerLanguage('bash', bash);
   }
   const code = nw.normalize(codeString);
 
@@ -68,7 +68,7 @@ export const MDXCodeBlock = ({
         // PreTag="div"
         showLineNumbers={codeString.includes('\n')}
       >
-        {codeString}
+        {code}
       </SyntaxHighlighter>
     </div>
   ) : (

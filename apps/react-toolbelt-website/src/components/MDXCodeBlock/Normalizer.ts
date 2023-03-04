@@ -1,8 +1,4 @@
-interface Object {
-  [k: string]: any;
-}
-
-interface NormalizationInput {
+export interface NormalizationInput {
   'remove-trailing'?: boolean;
   'remove-indent'?: boolean;
   'left-trim'?: boolean;
@@ -18,23 +14,9 @@ type CamelCase<S extends string> = S extends `${infer Head}-${infer Tail}`
   ? `${Lowercase<Head>}${Capitalize<CamelCase<Tail>>}`
   : S;
 
-// type NormalizeAttributesKeys = keyof NormalizeAttributes extends infer K
-//   ? K extends string
-//     ? { [P in K as CamelCase<P>]: P }
-//     : never
-//   : never;
-
-/** Map CamelCasedKeys to same values of kebab-case */
-// type NormalizeAttributesCamelCased = {
-//   [K in keyof NormalizeAttributes as CamelCase<K>]: NormalizeAttributes[K];
-// };
-
-/** All camelCasedKeys from kebab-cased keys in an interface as an Union Type */
-// type NormalizeAttributesCamelCasedKeys = CamelCase<keyof NormalizeAttributes>;
-
 const assign =
   Object.assign ||
-  function (obj1: Object, obj2: Object) {
+  function (obj1: { [k: string]: any }, obj2: { [k: string]: any }) {
     for (const name in obj2) {
       if (obj2.hasOwnProperty(name)) {
         obj1[name] = obj2[name];
