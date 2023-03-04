@@ -2,22 +2,25 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import type { Element } from '../../types';
 import { generateScrollValues, isServer } from '@react-toolbelt/utils';
 
-interface ScrollDirection {
+export interface ScrollDirection {
   x: 'left' | 'right';
   y: 'up' | 'down';
 }
-type CallbackAction = (
-  direction: ScrollDirection,
-  values: { x: number; y: number }
-) => void;
+export interface ScrollValues {
+  x: number;
+  y: number;
+}
 
 /**
  *
  * @param element `(Window & typeof globalThis) | Document | HTMLElement`
- * @param cb `(ScrollDirection, typeof scrollValues) => void`
+ * @param cb `(ScrollDirection, ScrollValues) => void`
  * @returns `{ scrollDirection, scrollValues }`
  */
-export const useScroll = (element?: Element, cb?: CallbackAction) => {
+export const useScroll = (
+  element?: Element,
+  cb?: (direction: ScrollDirection, values: ScrollValues) => void
+) => {
   const [scrollDirection, setScrollDirection] = useState<ScrollDirection>({
     x: 'left',
     y: 'up'

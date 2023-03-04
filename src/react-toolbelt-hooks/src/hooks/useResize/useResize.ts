@@ -2,18 +2,22 @@ import { useState, useEffect, useCallback, UIEvent } from 'react';
 import type { Element } from '../../types';
 import { isServer } from '@react-toolbelt/utils';
 
-interface ElementSize {
+export interface ElementSize {
   width: number;
   height: number;
 }
 
 /**
- *
+ * useResize tracks the `resize` event listener.
+ * > Note: On server-side frameworks like Next.js leave the element field `undefined` for the `window` or `document` element.
  * @param element `(Window & typeof globalThis) | Document | HTMLElement`
  * @param cb `({ width: number, height: number }) => void`
  * @returns `{ width: number, height: number }`
  */
-export const useResize = (element?: Element) => {
+export const useResize = (
+  element?: Element,
+  cb?: (size: ElementSize) => void
+) => {
   const [size, setSize] = useState<ElementSize>({
     width: 0,
     height: 0
@@ -23,22 +27,29 @@ export const useResize = (element?: Element) => {
     element = isServer() ? undefined : window;
   }
 
-  const handler = useCallback(({ target }: UIEvent<Element>) => {
-    if (!isServer()) {
-      if (target === window) {
-        setSize({
-          width: (target as typeof window).innerWidth,
-          height: (target as typeof window).innerHeight
-        });
-      } else if (target instanceof HTMLElement) {
-        setSize({ width: target.clientWidth, height: target.clientHeight });
-      } else return;
-    }
-  }, []);
+  const handler = useCallback(
+    ({ target }: UIEvent<Element>) => {
+      if (!isServer()) {
+        const elementSize: ElementSize = { width: 0, height: 0 };
+        if (target === window) {
+          elementSize.width = (target as typeof window).innerWidth;
+          elementSize.height = (target as typeof window).innerHeight;
+          setSize(elementSize);
+          return cb && cb(elementSize);
+        } else if (target instanceof HTMLElement) {
+          elementSize.width = target.clientWidth;
+          elementSize.height = target.clientHeight;
+          setSize(elementSize);
+          return cb && cb(elementSize);
+        }
+      }
+    },
+    [cb]
+  );
 
   /** Load Default */
   useEffect(() => {
-    if (size.width === 0 && size.height === 0 && !isServer()) {
+    if (!isServer()) {
       if (element === window) {
         setSize({
           width: window.innerWidth,
@@ -51,7 +62,7 @@ export const useResize = (element?: Element) => {
         });
       }
     }
-  }, [element, size.width, size.height]);
+  }, [element]);
 
   /** Modify on Resize */
   useEffect(() => {

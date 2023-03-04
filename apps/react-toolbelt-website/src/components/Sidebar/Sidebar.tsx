@@ -48,7 +48,7 @@ const Sidebar = memo<SidebarProps>(
       );
 
     return (
-      <aside className={`RHD-Sidebar p-5 ${className ?? ''}`}>
+      <aside className={`RT-Sidebar p-5 ${className ?? ''}`}>
         {itemsMarkup}
       </aside>
     );
@@ -104,7 +104,7 @@ function generateNavigationItem(
   return (
     <li key={item.id} id={item.id} {...props}>
       {!item.url ? (
-        <p className="RHD-NavigationTitle py-2.5 font-bold">{item.title}</p>
+        <p className="RT-NavigationTitle py-2.5 font-bold">{item.title}</p>
       ) : (
         linkMarkup
       )}
@@ -122,13 +122,13 @@ function generateNavigationItems(
   items?: NavigationItemHeader[] | NavigationItem[]
 ) {
   return Array.isArray(items) && items.length > 0 ? (
-    <ul className="RHD-SidebarItems flex flex-col gap-2">
+    <ul className="RT-SidebarItems flex flex-col gap-2">
       {items.map((item) => {
         const isSingleItem = isNavigationItem(item);
 
         const itemsMarkup = !isSingleItem ? (
           <ul
-            className={`RHD-Sidebar-${
+            className={`RT-Sidebar-${
               (item as NavigationItemHeader).name
             }Items flex flex-col gap-1`}
           >

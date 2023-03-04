@@ -1,69 +1,81 @@
-import { ReactNode } from 'react';
-import { Prefix } from '@/types';
+import { toKebabCase } from '@react-toolbelt/utils';
+import {
+  CSSProperties,
+  isValidElement,
+  ReactElement,
+  ReactNode,
+  useId
+} from 'react';
+import { HashLink } from './components';
 
 const ELEMENTS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
-const SIZE_OPTIONS = [
-  'xs',
-  'sm',
-  'standard',
-  'base',
-  'm',
-  'lg',
-  'xl',
-  '2xl',
-  '3xl'
-] as const;
-const ALIGNMENT = ['left', 'right', 'center'] as const;
 
-export interface Heading {
+export interface HeadingProps {
+  /** Unique id for the Heading */
   id?: string;
+  /** className attribute of the Heading component */
   className?: string;
+  /** A prefix component that appears in-line before the main Heading content */
+  prefix?: ReactElement | JSX.Element;
+  /** Whether the Heading component is a `h1`, `h2`, `h3`, `h4`, `h5` or `h6`.
+   *
+   * Default: `h2`
+   */
   tag?: (typeof ELEMENTS)[number];
-  size?: (typeof SIZE_OPTIONS)[number];
-  align?: (typeof ALIGNMENT)[number];
   children: ReactNode;
+  /** A suffix component that appears in-line after the main Heading content */
+  suffix?: ReactElement | JSX.Element;
+  /** Toggles Hashlink on or off */
+  hashLink?: boolean;
+  hashLinkOptions?: {
+    /** The title for the hashlink */
+    title?: string;
+    /** CSS Properties for the Hashlink */
+    style?: CSSProperties;
+    className?: string;
+    /** Allows hashlink to be copied on click. */
+    clickToCopy?: boolean;
+  };
 }
 
 export const Heading = ({
+  id,
   className,
   tag = 'h2',
-  size,
-  align = 'left',
-  children
-}: Heading) => {
-  let computedSize: Prefix<Heading['size'], 'text-'>;
-  const computedAlign = ['left', 'right', 'center'].includes(align)
-    ? `text-${align}`
-    : 'text-left';
+  prefix,
+  children,
+  suffix,
+  hashLink,
+  hashLinkOptions
+}: HeadingProps) => {
+  const generated_id = useId();
+  const heading_id =
+    id ?? typeof children === 'string'
+      ? toKebabCase(
+          (children as string).toLocaleLowerCase().replaceAll(' ', '-')
+        )
+      : generated_id;
   const Element = ELEMENTS.includes(tag) ? tag : 'h2';
 
-  if (size && SIZE_OPTIONS.includes(size)) computedSize = `text-${size}`;
-  else {
-    switch (Element) {
-      case 'h1':
-        computedSize += '3xl';
-        break;
-      case 'h2':
-        computedSize += '2xl';
-        break;
-      case 'h3':
-        computedSize += 'xl';
-        break;
-      case 'h4':
-        computedSize += 'lg';
-        break;
-      case 'h5':
-        computedSize += 'base';
-        break;
-      case 'h6':
-        computedSize += 'standard';
-        break;
-      default:
-        break;
-    }
-  }
+  const prefixMarkup = isValidElement(prefix) ? (
+    <span className="RT-HeadingSuffix">{prefix}</span>
+  ) : null;
 
-  const classList = `${computedSize} ${computedAlign} ${className ?? ''}`;
+  const suffixMarkup = isValidElement(suffix) ? (
+    <span className="RT-HeadingSuffix">{suffix}</span>
+  ) : null;
 
-  return <Element className={classList}>{children}</Element>;
+  return (
+    <Element
+      id={heading_id}
+      className={`RT-Heading inline-flex gap-2 ${className ?? ''}`}
+    >
+      {prefixMarkup}
+      <span className="RT-HeadingText">{children}</span>
+      {suffixMarkup}
+      {hashLink ? (
+        <HashLink ariaControls={heading_id} {...hashLinkOptions} />
+      ) : null}
+    </Element>
+  );
 };

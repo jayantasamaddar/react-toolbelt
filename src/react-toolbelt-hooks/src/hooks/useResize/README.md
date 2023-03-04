@@ -18,9 +18,19 @@ A reference to the DOM element on which to listen for the `resize` event
 
 > **Note**: Provide only a single element, not the entire ref object.
 
-### `callback`: (width, height) => void
+### `cb`: (size: ElementSize) => void
 
-A callback function to execute when the `resize` event is fired (optional)
+A callback function to execute when the `resize` event is fired (optional). This
+function takes in a single object parameter that allows you to use the current
+`width` and `height` of the resized element as parameters for use within the
+function.
+
+```ts
+interface ElementSize {
+  width: number;
+  height: number;
+}
+```
 
 ---
 

@@ -1,5 +1,11 @@
 export const isWindow = (
-  element: (Window & typeof globalThis) | Document | HTMLElement | EventTarget
+  element:
+    | (Window & typeof globalThis)
+    | Document
+    | HTMLElement
+    | EventTarget
+    | undefined
+    | null
 ) => {
-  return element instanceof Window;
+  return element === window || element instanceof Window;
 };

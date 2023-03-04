@@ -6,4 +6,5 @@ export {
   useResize,
   useScroll
 } from './hooks';
-export type { Element } from './types';
+export type { Element, DOMElement, KeyboardEventArgs } from './types';
+export type { ScrollDirection, ScrollValues, ElementSize } from './hooks';

@@ -56,6 +56,12 @@ module.exports = {
         100: '100',
         1000: '1000'
       },
+      transitionProperty: {
+        height: 'height',
+        'min-height': 'max-height',
+        'max-height': 'max-height',
+        spacing: 'margin, padding'
+      },
       keyframes: {
         'fade-in': {
           '0%': { opacity: 0 },
@@ -83,6 +89,7 @@ module.exports = {
         'fade-out': 'fade-out 0.2s ease-out forwards 0.2s',
         'slide-in-left': 'slide-in-left 0.2s ease-in-out forwards',
         'smooth-slide-in-top': 'smooth-slide-in-top 0.2s ease-in-out forwards',
+        'slow-spin': 'spin 20s linear infinite',
         grid: 'grid-lines 5s linear infinite'
       },
       listStyleType: {
@@ -95,8 +102,7 @@ module.exports = {
         'upper-roman': 'upper-roman'
       }
     }
-  },
-  plugins: []
+  }
 };
 
 // module.exports = {

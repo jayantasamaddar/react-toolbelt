@@ -206,9 +206,6 @@ a {
   ul.RT-NavigationMenuList li a {
     @apply py-4 pr-4 md:py-0 md:pl-4 md:pr-0;
   }
-  #RT-HeaderMenu.open {
-    @apply animate-slide-in-left;
-  }
 }
 
 @layer components {
@@ -225,5 +222,8 @@ a {
     height: 10px;
     filter: brightness(0) saturate(100%) invert(0.5) sepia(1) hue-rotate(180deg)
       brightness(1.2);
+  }
+  .RT-Heading:hover .RT-HeadingHashLink {
+    opacity: 1;
   }
 }

@@ -21,11 +21,23 @@ added to the entire document.
 
 > **Note**: Provide only a single element, not the entire ref object.
 
-### `callback`: (ScrollDirection, typeof scrollValues) => void
+### `callback`: (ScrollDirection, ScrollValues) => void
 
 A callback function that will be called when the component is changed. This
-function takes one parameter, `target`, which is the DOM element that was
-changed.
+function allows you to use the `ScrollDirection` and `ScrollValues` as
+parameters. Each of ScrollDirection and ScrollValues is an object having `x` and
+`y`.
+
+```ts
+interface ScrollDirection {
+  x: 'left' | 'right';
+  y: 'up' | 'down';
+}
+interface ScrollValues {
+  x: number;
+  y: number;
+}
+```
 
 ---
 

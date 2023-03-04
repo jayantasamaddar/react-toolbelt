@@ -5,13 +5,13 @@ const Icons = [
   {
     id: 'github',
     title: 'View on GitHub',
-    url: 'https://www.github.com/jayantasamaddar/react-tools',
+    url: 'https://www.github.com/jayantasamaddar/react-toolbelt',
     icon: FaGithub
   },
   {
     id: 'discord',
-    title: 'View on Discord',
-    url: 'https://www.github.com/jayantasamaddar/react-tools',
+    title: 'Join us on Discord',
+    url: 'https://www.discord.com/jayantasamaddar/react-toolbelt',
     icon: FaDiscord
   }
 ];

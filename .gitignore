@@ -45,3 +45,6 @@ out/
 
 # project
 examples/
+
+# local-test
+local-test/*

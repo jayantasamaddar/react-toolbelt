@@ -11,11 +11,12 @@ import Link from 'next/link';
 
 import { Logo, IconList } from '@/components';
 import { BurgerMenu } from './components';
-import { useClick, useKey, useResize, useScroll } from '@react-toolbelt/hooks';
+import { useClick, useKey } from '@react-toolbelt/hooks';
 import type { AriaOrientation } from '@/types';
 
 import navigation from '@/settings/navigation.json';
 import icons from '@/settings/social-icons';
+import { useApp } from '@/context';
 
 export const Header = (): ReactElement => {
   const [showMenu, setShowMenu] = useState(false);
@@ -25,8 +26,12 @@ export const Header = (): ReactElement => {
   /**********************************************************************************/
   /** Handle SideEffects */
   /**********************************************************************************/
-  const { width: windowWidth } = useResize();
-  const { scrollDirection: direction } = useScroll();
+  const {
+    settings: {
+      scroll: { direction },
+      windowSize: { width: windowWidth }
+    }
+  } = useApp();
 
   /** Show Hide Menu based on windowWidth */
   useEffect(() => {
@@ -36,17 +41,6 @@ export const Header = (): ReactElement => {
       setShowMenu(false);
     }
   }, [windowWidth]);
-
-  /** Add classes based on Burger Menu open/close state */
-  useEffect(() => {
-    if (showMenu) {
-      menuRef.current?.classList.add('open');
-      menuRef.current?.classList.remove('close');
-    } else {
-      menuRef.current?.classList.add('close');
-      menuRef.current?.classList.remove('open');
-    }
-  }, [showMenu]);
 
   useClick(undefined, (target) => {
     if (
@@ -95,12 +89,11 @@ export const Header = (): ReactElement => {
           ref={burgerRef}
           onClick={() => setShowMenu((prev) => !prev)}
           active={showMenu}
-          // onKeyUp={handleKeys}
           ariaControls="RT-HeaderMenu"
         />
       )}
       <div className="RT-HeaderLogo relative flex h-full w-full items-center justify-center md:static md:w-auto">
-        <Logo className="absolute left-[calc(50%-var(--header-logo-h)/2)] top-[calc(50%-var(--header-logo-h)/2)] h-logo md:static" />
+        <Logo className="absolute left-[calc(50%-var(--header-logo-h)/2)] top-[calc(50%-var(--header-logo-h)/2)] h-logo hover:animate-slow-spin md:static" />
       </div>
 
       {showMenu && (
@@ -108,9 +101,11 @@ export const Header = (): ReactElement => {
           <nav
             id="RT-HeaderMenu"
             role="menubar"
-            className={`RT-Navigation max-h-auto fixed left-0 top-[--header-min-h] mt-header flex h-body-full md:mt-0 ${
-              direction.y === 'up' ? 'min-h-body-screen' : 'min-h-screen'
-            } w-1/2 flex-col overflow-y-auto bg-theme-primary-2 duration-75 md:static md:h-auto md:min-h-full md:w-auto md:flex-row md:bg-transparent`}
+            className={`RT-Navigation fixed left-0 top-[--header-min-h] mt-header flex h-body-full min-h-body-screen md:mt-0 ${
+              direction.y === 'up' ? 'h-body-screen' : 'h-screen'
+            } ${
+              showMenu ? 'open animate-slide-in-left' : 'close'
+            } w-1/2 flex-col overflow-y-auto bg-theme-primary-2 transition-height duration-300 md:static md:h-auto md:min-h-full md:w-auto md:flex-row md:bg-transparent`}
             ref={menuRef}
             {...menuOrientation}
           >
