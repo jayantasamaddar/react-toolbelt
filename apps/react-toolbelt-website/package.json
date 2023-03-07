@@ -28,6 +28,7 @@
     "@next/mdx": "13.2.3",
     "@react-icons/all-files": "^4.1.0",
     "@react-toolbelt/hooks": "*",
+    "@react-toolbelt/utils": "*",
     "next": "13.2.3",
     "prismjs": "^1.29.0",
     "react": "18.2.0",
@@ -36,7 +37,6 @@
     "sharp": "^0.31.3"
   },
   "devDependencies": {
-    "@react-toolbelt/utils": "*",
     "@types/mdx": "^2.0.3",
     "@types/node": "18.14.2",
     "@types/prismjs": "^1.26.0",
