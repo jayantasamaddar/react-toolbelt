@@ -3,7 +3,7 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "build/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "build/**"]
     },
     "build:packages": {
       "dependsOn": ["^build"],
@@ -11,8 +11,7 @@
     },
     "build:apps": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "build/**"],
-      "cache": false
+      "outputs": [".next/**", "!.next/cache/**", "build/**"]
     },
     "test": {
       "outputs": [],
@@ -38,6 +37,9 @@
       "cache": true
     },
     "clean": {
+      "cache": false
+    },
+    "clean:cache": {
       "cache": false
     },
     "clean:docs": {

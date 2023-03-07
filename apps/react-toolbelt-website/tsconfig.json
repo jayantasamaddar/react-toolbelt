@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,7 +25,9 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "include": [
@@ -30,12 +36,18 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/types/**/*.ts",
-    "/home/jayantasamaddar/Work/react-tools/apps/react-toolbelt-website/.next/types/**/*.ts"
+    "/home/jayantasamaddar/Work/react-tools/apps/react-toolbelt-website/.next/types/**/*.ts",
+    "/home/jayantasamaddar/Work/react-toolbelt/apps/react-toolbelt-website/.next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
-    }
+    },
+    "require": [
+      "tsconfig-paths/register"
+    ]
   }
 }

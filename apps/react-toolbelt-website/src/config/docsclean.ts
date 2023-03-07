@@ -1,8 +1,8 @@
 import { join, resolve, relative } from 'path';
 import { readdir, unlink } from 'fs/promises';
-import pkg from '../../package.json';
-import sidebar from '../settings/sidebar.json';
-import { rmDirRecursive } from '../utilities/server';
+import pkg from '@/../package.json';
+import sidebar from '@/settings/sidebar.json';
+import { rmDirRecursive } from '@/utilities/server';
 
 const project_prefix = pkg.name.slice(0, pkg.name.lastIndexOf('-') + 1); // 'react-tools-'
 const project = pkg.name.slice(pkg.name.lastIndexOf('-') + 1); // 'website'

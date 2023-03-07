@@ -1,10 +1,10 @@
 import { resolve, extname, relative, join } from 'path';
 import { readdir, writeFile } from 'fs/promises';
-import pkg from '../../package.json';
-import sidebar from '../settings/sidebar.json';
+import pkg from '@/../package.json';
+import sidebar from '@/settings/sidebar.json';
 import { toKebabCase, toPascalCase } from '@react-toolbelt/utils';
-import { HeadingTree } from '../utilities';
-import { readFromWriteTo } from '../utilities/server';
+import { HeadingTree } from '@/utilities';
+import { readFromWriteTo } from '@/utilities/server';
 
 /**
  * Generate Documentation Pages

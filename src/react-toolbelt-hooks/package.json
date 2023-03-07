@@ -34,6 +34,7 @@
     "build:js": "rollup -c",
     "build:types": "tsc --declarationDir dist/types --declaration --emitDeclarationOnly",
     "clean": "rm -rf dist .rollup.cache",
+    "clean:cache": "rm -rf .cache .turbo .rollup.cache",
     "clean:all": "rm -rf dist node_modules .rollup.cache",
     "format": "prettier --write src",
     "format-check": "prettier --check src",
