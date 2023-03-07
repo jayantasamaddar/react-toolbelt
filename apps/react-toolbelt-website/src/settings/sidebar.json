@@ -48,6 +48,18 @@
         "url": "/docs/use-hover"
       },
       {
+        "id": "use-focus",
+        "name": "use-focus",
+        "title": "useFocus",
+        "url": "/docs/use-focus"
+      },
+      {
+        "id": "use-blur",
+        "name": "use-blur",
+        "title": "useBlur",
+        "url": "/docs/use-blur"
+      },
+      {
         "id": "use-key",
         "name": "use-key",
         "title": "useKey",

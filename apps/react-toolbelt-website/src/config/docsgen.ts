@@ -81,7 +81,7 @@ const docsgen = async () => {
             });
             const rWritePath = relative(
               __dirname,
-              `${writeLocation}/headings.json'`
+              `${writeLocation}/headings.json`
             );
             console.log(
               `\x1b[32m File successfully written to\x1b[0m: '${join(
