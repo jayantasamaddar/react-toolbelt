@@ -50,11 +50,10 @@ export const Heading = ({
 }: HeadingProps) => {
   const generated_id = useId();
   const heading_id =
-    id ?? typeof children === 'string'
-      ? toKebabCase(
-          (children as string).toLocaleLowerCase().replaceAll(' ', '-')
-        )
-      : generated_id;
+    id ?? typeof children !== 'string'
+      ? generated_id
+      : toKebabCase(children)?.toLowerCase().replaceAll(' ', '-');
+
   const Element = ELEMENTS.includes(tag) ? tag : 'h2';
 
   const prefixMarkup = isValidElement(prefix) ? (
@@ -68,7 +67,7 @@ export const Heading = ({
   return (
     <Element
       id={heading_id}
-      className={`RT-Heading inline-flex gap-2 ${className ?? ''}`}
+      className={`RT-Heading flex gap-2 ${className ?? ''}`}
     >
       {prefixMarkup}
       <span className="RT-HeadingText">{children}</span>

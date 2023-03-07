@@ -4,7 +4,7 @@ The `useClick` hook is a custom React hook that allows you to add click event
 listeners to your components. This hook is implemented using the
 `@react-toolbelt/hooks` package.
 
-It takes two parameters, a `ref` and a `callback` function.
+It takes two parameters, an `element` and a `callback` function.
 
 ---
 
@@ -12,8 +12,8 @@ It takes two parameters, a `ref` and a `callback` function.
 
 ### `element`: Document | HTMLElement
 
-A reference to the DOM element on which to listen for click events (optional,
-defaults to the document object).
+The HTML Element on which to listen for click events (optional, defaults to the
+document object).
 
 > **Note**: Provide only a single element, not the entire ref object.
 

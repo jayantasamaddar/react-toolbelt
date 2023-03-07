@@ -1,55 +1,18 @@
-import url from 'url';
-import { resolve, dirname } from 'path';
-import { readdir, readFile, writeFile, mkdir } from 'fs/promises';
-import { existsSync } from 'fs';
-import pkg from '../../package.json' assert { type: 'json' };
-import sidebar from '../settings/sidebar.json' assert { type: 'json' };
-
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-export const readFromWriteTo = async (
-  readLocation: string,
-  writeLocation: string,
-  preprocessor?: (file?: string) => string,
-  postprocessor?: () => void
-) => {
-  try {
-    let file = await readFile(readLocation, { encoding: 'utf8' });
-    if (!file) throw new Error(`Could not read file at ${readLocation}`);
-
-    /** Run pre-processor to make changes to file (if any) */
-    if (preprocessor) file = preprocessor(file);
-
-    /** If no Directory exists, create it */
-    const dirPath = dirname(writeLocation);
-    if (!existsSync(dirPath)) await mkdir(dirPath);
-
-    await writeFile(writeLocation, file, { encoding: 'utf-8' });
-    console.log(`File written to: ${writeLocation}`);
-
-    /** Run postprocessor if any */
-    postprocessor && postprocessor();
-    return true;
-  } catch (err) {
-    if (err instanceof Error) {
-      console.log(err.message);
-      return false;
-    }
-  }
-};
+import { resolve, extname, relative, join } from 'path';
+import { readdir, writeFile } from 'fs/promises';
+import pkg from '@/../package.json';
+import sidebar from '@/settings/sidebar.json';
+import { toKebabCase, toPascalCase } from '@react-toolbelt/utils';
+import { HeadingTree } from '@/utilities';
+import { readFromWriteTo } from '@/utilities/server';
 
 /**
  * Generate Documentation Pages
  * ----------------------------
  */
-const generateDocs = async () => {
-  // const pkgData = await readFile(resolve(__dirname, '../../package.json'), {
-  //   encoding: 'utf8'
-  // });
-  // const pkg = await JSON.parse(pkgData);
+const docsgen = async () => {
   const projectDir = resolve(__dirname, '../../../../src'); // location of packages
-  const project_prefix = pkg.name.slice(0, pkg.name.lastIndexOf('-') + 1); // 'react-tools-'
+  const project_prefix = pkg.name.slice(0, pkg.name.lastIndexOf('-') + 1); // 'react-toolbelt-'
   const project = pkg.name.slice(pkg.name.lastIndexOf('-') + 1); // 'website'
   const projectDirFiles = await readdir(projectDir);
 
@@ -58,44 +21,95 @@ const generateDocs = async () => {
     .filter((name) => name.split(project_prefix)[1] !== project)
     .map((p) => p.slice(p.lastIndexOf('-') + 1)); // [ 'hooks', 'utils' ]
 
-  // const data = await readFile(resolve(__dirname, '../../package.json'), {
-  //   encoding: 'utf8'
-  // });
-  // const sidebar = await JSON.parse(data);
-
   for (const item of sidebar) {
-    const items = item?.items;
-    if (!(PROJECTS.includes(item?.name) && Array.isArray(items))) {
-      continue;
-    }
+    const items = item.items ?? [];
+    const type =
+      PROJECTS.includes(item.name) && Array.isArray(items)
+        ? 'package'
+        : 'non-package';
 
-    items.forEach(async (api) => {
-      const readLocation = resolve(
-        __dirname,
-        `${projectDir}/${project_prefix}${item.name}/src/${item.name}/${api.title}/README.md`
-      );
+    for (const api of items) {
+      const readLocation =
+        type === 'package'
+          ? resolve(
+              __dirname,
+              `${projectDir}/${project_prefix}${item.name}/src/${item.name}/${api.title}/README.md`
+            )
+          : resolve(__dirname, `../app/docs/${api.name}/README.md`);
 
       const writeLocation = resolve(__dirname, `../app/docs/${api.name}`);
 
       /** Generate MDX from a project folder's read location */
-      await readFromWriteTo(readLocation, `${writeLocation}/content.mdx`);
 
-      const title = api.title[0].toUpperCase() + api.title.slice(1);
+      /** Generate fetched MDX from packages */
+      await readFromWriteTo({
+        readLocation,
+        writeLocation: `${writeLocation}/content.mdx`,
+        postprocessor: async (file) => {
+          /** Post-processor hook, Generate Headings JSON file for sidebar */
+          if (extname(readLocation) === '.md') {
+            const headings = new HeadingTree();
+            for (const heading of (file as string).split('\n')) {
+              // Select Headings 1 - 3
+              if (/^(#{1,3})\s/.test(heading)) {
+                // /^(#{1,3})\s(?!.*(`|npm|yarn|pnpm)).+$/gim  => https://regex101.com/r/Q7z2GP/1
+                // Exclude the following words, characters
+                if (/(?:`|npm|yarn|pnpm)/.test(heading)) continue;
+                /** `level`: 1 for h1, 2 for h2 and so on. Needed for tree generation. */
+                const level = heading.lastIndexOf('#') + 1;
+                const title = heading.slice(level + 1, heading.length);
+                const kebabCasedTitle =
+                  (
+                    toKebabCase(title.replace(/ +/g, '')) as string
+                  ).toLowerCase() ?? title;
+                headings.add({
+                  id: kebabCasedTitle,
+                  name: kebabCasedTitle,
+                  title,
+                  level,
+                  url: `${api.url}/#${kebabCasedTitle}`
+                });
+              }
+            }
+            const headingsJSON = JSON.stringify(
+              headings.normalize(),
+              null,
+              2
+            ).replace(/children+/g, 'items');
+            await writeFile(`${writeLocation}/headings.json`, headingsJSON, {
+              encoding: 'utf-8'
+            });
+            const rWritePath = relative(
+              __dirname,
+              `${writeLocation}/headings.json'`
+            );
+            console.log(
+              `\x1b[32m File successfully written to\x1b[0m: '${join(
+                '/src',
+                rWritePath.slice(rWritePath.indexOf('app'))
+              )}'`
+            );
+          }
+        }
+      });
+
+      // Replace all spaces
+      const title = toPascalCase(api.title.replace(/ +/g, '')) as string;
 
       /** Generate page.tsx from a Template */
-      await readFromWriteTo(
-        resolve(__dirname, './templates/DocsPage.tsx'),
-        `${writeLocation}/page.tsx`,
-        (file) => (file as string).replace('Template', title)
-      );
+      await readFromWriteTo({
+        readLocation: resolve(__dirname, './templates/docs/DocsPage.tsx'),
+        writeLocation: `${writeLocation}/page.tsx`,
+        preprocessor: (file) => (file as string).replace('Template', title) // Pre-processor hook to change name
+      });
 
       /** Generate loading.tsx from a Template */
-      await readFromWriteTo(
-        resolve(__dirname, './templates/DocsLoading.tsx'),
-        `${writeLocation}/loading.tsx`
-      );
-    });
+      await readFromWriteTo({
+        readLocation: resolve(__dirname, './templates/docs/DocsLoading.tsx'),
+        writeLocation: `${writeLocation}/loading.tsx`
+      });
+    }
   }
 };
 
-generateDocs();
+docsgen();

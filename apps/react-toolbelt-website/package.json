@@ -17,7 +17,7 @@
     "format-check": "prettier --check src",
     "clean": "rm -rf .next .turbo",
     "clean:cache": "rm -rf .turbo",
-    "clean:docs": "ts-node src/config/clean.ts",
+    "clean:docs": "ts-node src/config/docsclean.ts",
     "clean:all": "yarn clean && yarn clean:cache && rm -rf node_modules && yarn clean:docs",
     "docsgen": "ts-node src/config/docsgen.ts",
     "ts-check": "tsc --noemit",

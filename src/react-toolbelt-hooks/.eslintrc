@@ -11,5 +11,5 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   },
-  "ignorePatterns": ["node_modules", "*.config.*"]
+  "ignorePatterns": ["node_modules", "*.config.*", ".turbo", "coverage"]
 }

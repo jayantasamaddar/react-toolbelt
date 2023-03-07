@@ -39,6 +39,7 @@ export const HashLink = ({
       aria-controls={ariaControls}
       title={displayText}
       href={url}
+      scroll={false}
     ></Link>
   );
 };

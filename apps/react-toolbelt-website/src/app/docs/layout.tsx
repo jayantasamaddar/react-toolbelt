@@ -1,7 +1,7 @@
 'use client';
 
-import { Breadcrumbs, Sidebar } from '@/components';
-import { useApp } from '@/context';
+import { Sidebar } from '@/components';
+import { DocumentProvider, useApp } from '@/context';
 import sidebar from '@/settings/sidebar.json';
 
 export default function DocsLayout({
@@ -11,23 +11,26 @@ export default function DocsLayout({
 }) {
   const {
     settings: {
-      windowSize: { width }
+      windowSize: { width },
+      scroll: { direction }
     }
   } = useApp();
 
   return (
-    <div className="grid h-full w-full grid-cols-12 items-stretch bg-gradient-radial from-[#06001a] via-theme-primary to-theme-primary-2 px-5 text-white md:p-5">
-      <Sidebar
-        className="col-span-12 h-full w-full border-b border-b-theme-primary-2 md:col-span-2 md:block md:border-r md:border-r-theme-primary-2"
-        items={sidebar}
-        preset={width < 768 ? 'accordion' : 'default'}
-      />
-      <section className="col-span-12 h-full w-full md:col-span-10">
-        <article className="h-full p-5">
-          <Breadcrumbs />
-          {children}
-        </article>
-      </section>
-    </div>
+    <DocumentProvider>
+      <div className="grid h-full w-full grid-cols-12 items-stretch bg-gradient-radial from-[#06001a] via-theme-primary to-theme-primary-2 px-5 text-white md:p-5">
+        <Sidebar
+          className={`col-span-12 w-full overflow-y-auto transition-height md:min-h-body-screen md:w-[calc(100vw/12*2-1.25rem)] ${
+            direction.y === 'up' ? 'h-full' : 'h-body-full md:top-5'
+          } border-b border-b-theme-primary-2 md:fixed md:border-b-0 md:border-r md:border-r-theme-primary-2`}
+          items={sidebar}
+          preset={width < 768 ? 'accordion' : 'default'}
+          stagger
+          highlight
+          headings
+        />
+        {children}
+      </div>
+    </DocumentProvider>
   );
 }

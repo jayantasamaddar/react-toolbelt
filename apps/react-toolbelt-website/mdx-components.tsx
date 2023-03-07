@@ -12,12 +12,12 @@ function Paragraph({ children }: { children: ReactNode }) {
 }
 
 function ListItem({ children }: { children: ReactNode }) {
-  return <li className="ml-5 list-disc">{children}</li>;
+  return <li className="ml-12 list-disc">{children}</li>;
 }
 
 function H1({ children }: { children: ReactNode }) {
   return (
-    <Heading tag="h1" hashLink>
+    <Heading tag="h1" hashLink={typeof children === 'string'}>
       {children}
     </Heading>
   );
@@ -25,7 +25,15 @@ function H1({ children }: { children: ReactNode }) {
 
 function H2({ children }: { children: ReactNode }) {
   return (
-    <Heading tag="h2" hashLink>
+    <Heading tag="h2" hashLink={typeof children === 'string'}>
+      {children}
+    </Heading>
+  );
+}
+
+function H3({ children }: { children: ReactNode }) {
+  return (
+    <Heading tag="h3" hashLink={typeof children === 'string'}>
       {children}
     </Heading>
   );
@@ -35,6 +43,7 @@ export function useMDXComponents(components: MDXComponents) {
   return {
     h1: H1,
     h2: H2,
+    h3: H3,
     code: MDXCodeBlock,
     p: Paragraph,
     hr: HorizontalRule,

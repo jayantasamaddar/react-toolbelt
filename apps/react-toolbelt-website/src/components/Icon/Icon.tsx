@@ -1,7 +1,6 @@
-import { FC, SVGProps, AriaRole, MouseEvent, ReactElement } from 'react';
+import { AriaRole, MouseEvent, ReactElement } from 'react';
+import { IconSource } from '@/types';
 import Image from 'next/image';
-
-export type IconSource = FC<SVGProps<SVGSVGElement>> | 'placeholder' | string;
 
 interface IconProps {
   src: IconSource;

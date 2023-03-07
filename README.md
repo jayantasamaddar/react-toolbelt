@@ -1,13 +1,13 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
-- [About React Toolbelt](#about-react-toolbelt)
+- [React Toolbelt](#react-toolbelt)
 - [Hooks](#hooks)
-- [Utilities](#utilities)
+- [Utils](#utils)
 
 ---
 
-# About React Toolbelt
+# React Toolbelt
 
 React Toolbelt is a collection of hooks, utility functions and other tooling
 around React to supercharge the React Developer experience.
@@ -22,6 +22,8 @@ around React to supercharge the React Developer experience.
 ---
 
 # [Hooks](src/react-toolbelt-hooks)
+
+[![npm version](https://img.shields.io/npm/v/@react-toolbelt/hooks.svg?label=%40zenius%2Fursa&style=flat)](https://www.npmjs.com/package/@react-toolbelt/hooks)
 
 ```bash
 # Using npm
@@ -40,7 +42,9 @@ yarn add @react-toolbelt/hooks
 
 ---
 
-# [Utilities](src/react-toolbelt-utilities)
+# [Utils](src/react-toolbelt-utils)
+
+[![npm version](https://img.shields.io/npm/v/@react-toolbelt/utils.svg?label=%40zenius%2Fursa&style=flat)](https://www.npmjs.com/package/@react-toolbelt/utils)
 
 ```bash
 # Using npm

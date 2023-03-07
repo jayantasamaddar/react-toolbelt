@@ -34,9 +34,9 @@
   ],
   "exclude": ["node_modules"],
   "ts-node": {
-    "moduleTypes": {
-      "src/config/*": "esm"
+    "compilerOptions": {
+      "module": "CommonJS"
     },
-    "esm": true
+    "require": ["tsconfig-paths/register"]
   }
 }

@@ -1,36 +1,40 @@
-import type { IconSource } from '@/types';
-import { isExternalLink } from '@/utilities';
-import Link from 'next/link';
-import { Fragment, ReactNode, memo } from 'react';
+import { Fragment, memo, ReactNode } from 'react';
+import { isExternalLink } from '@react-toolbelt/utils';
+import { Link } from '../Link';
+import { NavigationItem } from '@/types';
 import { Accordion, AccordionProps } from '../Accordion';
 
-interface NavigationItem {
-  /** Unique ID of the NavigationItem */
-  id?: string;
-  /** `name` attribute is a unique handle usually in kebab-case for the NavigationItem */
-  name?: string;
-  /** Visible Text in the UI */
-  title: string;
-  /** Icon */
-  icon?: IconSource;
-  /** Link to go to */
-  url?: string;
-  /** Whether link is external or not */
-  external?: boolean;
+const ELEMENTS = ['aside', 'nav', 'section', 'div'] as const;
+
+interface SideBarItemOptions {
+  stagger?: boolean;
+  highlight?: boolean;
+  border?: boolean;
+  headings?: boolean;
+  fontSize?: 'sm' | 'base' | 'l';
 }
 
-interface NavigationItemHeader extends NavigationItem {
-  items: NavigationItem[];
-}
-
-interface SidebarProps {
+interface SidebarProps extends SideBarItemOptions {
+  /** className attribute of the Sidebar Component */
   className?: string;
-  items?: NavigationItemHeader[] | NavigationItem[];
+  /** Allows polymorphism - Generate the Sidebar component as a different HTML element */
+  as?: 'nav' | 'aside' | 'div' | 'section';
+  /** A list of Navigation items */
+  items?: NavigationItem[];
+  /** Whether to render the items as a default navigation list or an accordion */
   preset?: 'default' | 'accordion';
 }
 
 const Sidebar = memo<SidebarProps>(
-  ({ className, items, preset = 'default' }) => {
+  ({
+    className,
+    items,
+    preset = 'default',
+    as = 'aside',
+    ...navigationOptions
+  }) => {
+    const Element = ELEMENTS.includes(as) ? as : 'aside';
+
     const accordionItems: AccordionProps['items'] = [
       {
         id: 'menu',
@@ -42,25 +46,26 @@ const Sidebar = memo<SidebarProps>(
 
     const itemsMarkup =
       preset === 'default' ? (
-        generateNavigationItems(items)
+        renderNavigationItems(items, navigationOptions)
       ) : (
         <Accordion id="menu" className="text-md" items={accordionItems} />
       );
 
     return (
-      <aside className={`RT-Sidebar p-5 ${className ?? ''}`}>
+      <Element
+        role="navigation"
+        className={`RT-Sidebar py-5 ${
+          navigationOptions.stagger && preset === 'default' ? 'pr-5' : 'px-5'
+        } ${className ?? ''}`}
+      >
         {itemsMarkup}
-      </aside>
+      </Element>
     );
   }
 );
 
-Sidebar.displayName = 'Sidebar';
-
 /** Helper Functions */
-function isNavigationItem(
-  item: NavigationItemHeader | NavigationItem
-): item is NavigationItem {
+function isNavigationItem(item: NavigationItem): item is NavigationItem {
   return 'items' in item === false;
 }
 
@@ -118,36 +123,69 @@ function generateNavigationItem(
  * @param items
  * @returns `JSX.Element` | `undefined`
  */
-function generateNavigationItems(
-  items?: NavigationItemHeader[] | NavigationItem[]
-) {
-  return Array.isArray(items) && items.length > 0 ? (
-    <ul className="RT-SidebarItems flex flex-col gap-2">
-      {items.map((item) => {
-        const isSingleItem = isNavigationItem(item);
+const renderNavigationItems = (
+  items: NavigationItem[] = [],
+  options: SideBarItemOptions = {}
+) => {
+  return (
+    Array.isArray(items) &&
+    items.length > 0 && (
+      <ul className={`RT-SidebarItems flex flex-col gap-1.5`} role="menu group">
+        {items.map(({ id, name, title, items, url }) => {
+          const titleMarkup =
+            options.headings && !url ? (
+              <h6
+                className={`RT-NavigationTitle py-4 font-body text-base leading-snug`}
+              >
+                {title}
+              </h6>
+            ) : (
+              <span
+                className={`RT-NavigationTitle inline-flex w-full items-center ${
+                  options.fontSize ? `text-${options.fontSize}` : 'text-base'
+                } ${
+                  options.highlight
+                    ? 'pl-4 hover:bg-theme-primary-2 dark:hover:bg-theme-primary-2'
+                    : ''
+                }`}
+              >
+                {title}
+              </span>
+            );
 
-        const itemsMarkup = !isSingleItem ? (
-          <ul
-            className={`RT-Sidebar-${
-              (item as NavigationItemHeader).name
-            }Items flex flex-col gap-1`}
-          >
-            {(item as NavigationItemHeader)?.items?.map((itemInner) => {
-              const isValidItem = isNavigationItem(itemInner);
-              return isValidItem
-                ? generateNavigationItem(itemInner, {
-                    className: ''
-                  })
-                : null;
-            })}
-          </ul>
-        ) : null;
-
-        return generateNavigationItem(item, {}, itemsMarkup);
-      })}
-    </ul>
-  ) : undefined;
-}
+          return (
+            <li
+              id={id || name}
+              key={id || name}
+              role="menuitem"
+              className={`flex flex-col gap-1.5 ${
+                options.stagger ? 'pl-4' : ''
+              }`}
+            >
+              {url ? (
+                <Link
+                  className={`-ml-px block text-theme-accent-3 transition-colors hover:text-slate-300  ${
+                    options.border
+                      ? 'border-l border-transparent hover:border-slate-400 dark:hover:border-slate-500'
+                      : ''
+                  }`}
+                  href={url}
+                  title={title}
+                  scroll={false}
+                >
+                  {titleMarkup}
+                </Link>
+              ) : (
+                titleMarkup
+              )}
+              {renderNavigationItems(items, options)}
+            </li>
+          );
+        })}
+      </ul>
+    )
+  );
+};
 
 /**
  * Generate Content for the Accordion when Sidebar preset is `accordion`
@@ -170,9 +208,7 @@ function generateAccordionContent(items?: NavigationItem[]) {
  * @param items
  * @returns `JSX.Element`
  */
-function generateAccordionPreset(
-  items?: NavigationItemHeader[] | NavigationItem[]
-) {
+function generateAccordionPreset(items?: NavigationItem[]) {
   let itemsMarkup: ReactNode;
   if (Array.isArray(items) && items.length > 0) {
     const nonAccordionItems: NavigationItem[] = [];
@@ -186,9 +222,7 @@ function generateAccordionPreset(
           id: items[i].id as string,
           title: items[i].title,
           active: false,
-          content: generateAccordionContent(
-            (items[i] as NavigationItemHeader).items
-          )
+          content: generateAccordionContent((items[i] as NavigationItem).items)
         };
       }
     }
@@ -218,4 +252,5 @@ function generateAccordionPreset(
   return <ul className="RT-SidebarAccordion">{itemsMarkup}</ul>;
 }
 
+Sidebar.displayName = 'Sidebar';
 export { Sidebar };

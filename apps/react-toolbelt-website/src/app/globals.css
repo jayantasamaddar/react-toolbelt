@@ -141,7 +141,7 @@ a {
     @apply m-0 h-full w-full border-0 p-0 outline-0;
   }
   body {
-    @apply font-source-sans;
+    @apply font-body;
   }
   h1 {
     @apply py-6 text-3xl font-bold;
@@ -167,7 +167,7 @@ a {
   h4,
   h5,
   h6 {
-    @apply font-nexa-bold leading-snug;
+    @apply font-heading leading-snug;
   }
   blockquote {
     @apply border-l-4 border-neutral-500 bg-neutral-100 p-4 italic text-neutral-600;

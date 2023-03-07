@@ -9,6 +9,7 @@ export * from './Header';
 export * from './Icon';
 export * from './IconList';
 export * from './Invisible';
+export * from './Link';
 export * from './Logo';
 export * from './Main';
 export * from './Sidebar';

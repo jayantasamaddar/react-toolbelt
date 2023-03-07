@@ -2,6 +2,8 @@ export {
   useChange,
   useClick,
   useHover,
+  useFocus,
+  useBlur,
   useKey,
   useResize,
   useScroll

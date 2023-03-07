@@ -1,0 +1,57 @@
+[
+  {
+    "id": "sponsor",
+    "name": "sponsor",
+    "title": "Sponsor",
+    "level": 1,
+    "url": "/docs/sponsor/#sponsors",
+    "parent": null,
+    "items": [
+      {
+        "id": "diamond-sponsors",
+        "name": "diamond-sponsors",
+        "title": "Diamond Sponsors",
+        "level": 2,
+        "url": "/docs/sponsor/#diamond-sponsors",
+        "parent": "sponsor",
+        "items": []
+      },
+      {
+        "id": "gold-sponsors",
+        "name": "gold-sponsors",
+        "title": "Gold Sponsors",
+        "level": 2,
+        "url": "/docs/sponsor/#gold-sponsors",
+        "parent": "sponsor",
+        "items": []
+      },
+      {
+        "id": "silver-sponsors",
+        "name": "silver-sponsors",
+        "title": "Silver Sponsors",
+        "level": 2,
+        "url": "/docs/sponsor/#silver-sponsors",
+        "parent": "sponsor",
+        "items": []
+      },
+      {
+        "id": "bronze-sponsors",
+        "name": "bronze-sponsors",
+        "title": "Gold Sponsors",
+        "level": 2,
+        "url": "/docs/sponsor/#bronze-sponsors",
+        "parent": "sponsor",
+        "items": []
+      }
+    ]
+  },
+  {
+    "id": "core-architecture-sponsors",
+    "name": "core-architecture-sponsors",
+    "title": "Core Architecture Sponsors",
+    "level": 2,
+    "url": "/docs/sponsor/#core-architecture-sponsors",
+    "parent": "sponsor",
+    "items": []
+  }
+]

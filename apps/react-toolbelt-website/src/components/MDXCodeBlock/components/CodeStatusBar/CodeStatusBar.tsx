@@ -3,7 +3,7 @@
 import { Button } from '@/components';
 import { FaCheck } from '@react-icons//all-files/fa/FaCheck';
 import { FaClipboard } from '@react-icons//all-files/fa/FaClipboard';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 interface CodeStatusBarProps {
   className?: string;
@@ -18,11 +18,11 @@ export const CodeStatusBar = ({
 }: CodeStatusBarProps) => {
   const [copy, setCopy] = useState(false);
 
-  const handleCopy = () => {
+  const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(code);
     setCopy(true);
     setTimeout(() => setCopy(false), 2000);
-  };
+  }, [code]);
 
   return (
     <div
@@ -36,7 +36,9 @@ export const CodeStatusBar = ({
       <Button
         icon={!copy ? <FaClipboard size="1.1rem" /> : <FaCheck size="1.1rem" />}
         onClick={handleCopy}
-        className="text-theme-accent-3 transition-colors hover:text-theme-ds-complementary"
+        className={`transition-colors hover:text-theme-ds-complementary ${
+          !copy ? 'text-theme-accent-3' : 'text-theme-ds-complementary'
+        }`}
       >
         {!copy ? 'Copy' : 'Copied!'}
       </Button>

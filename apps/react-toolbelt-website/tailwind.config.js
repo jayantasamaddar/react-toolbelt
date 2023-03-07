@@ -49,7 +49,9 @@ module.exports = {
       },
       fontFamily: {
         'nexa-bold': ['Nexa', 'Helvetica', 'Arial', 'sans-serif'],
-        'source-sans': ['Source Sans Pro', 'sans-serif']
+        'source-sans': ['Source Sans Pro', 'sans-serif'],
+        heading: ['Nexa', 'Helvetica', 'Arial', 'sans-serif'],
+        body: ['Source Sans Pro', 'sans-serif']
       },
       zIndex: {
         1: '1',
@@ -61,6 +63,9 @@ module.exports = {
         'min-height': 'max-height',
         'max-height': 'max-height',
         spacing: 'margin, padding'
+      },
+      transitionDuration: {
+        default: '0.2s'
       },
       keyframes: {
         'fade-in': {

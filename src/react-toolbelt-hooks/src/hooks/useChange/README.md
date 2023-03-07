@@ -4,17 +4,16 @@
 to your components. This hook is implemented using the `@react-toolbelt/hooks`
 package.
 
-It takes two parameters, a `ref` and a `callback` function.
+It takes two parameters, a `element` and a `callback` function.
 
 ---
 
 ## Parameters
 
-### `ref`: Document | HTMLElement
+### `element`: Document | HTMLElement
 
-A ref to the component you want to listen to the click event on. This is an
-optional parameter, but if you don't provide a ref, the click event will be
-added to the entire document.
+The HTML Element on which to listen for change events (optional, defaults to the
+document object).
 
 > **Note**: Provide only a single element, not the entire ref object.
 

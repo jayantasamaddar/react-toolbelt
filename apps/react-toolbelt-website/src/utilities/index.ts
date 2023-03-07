@@ -1,5 +1,5 @@
 export * from './componentUtils';
-export * from './isExternalLink';
+export * from './data-structures';
 export * from './isIconSource';
 export * from './isServer';
 export * from './getBaseUrl';
