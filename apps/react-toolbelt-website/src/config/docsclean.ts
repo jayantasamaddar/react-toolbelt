@@ -1,15 +1,15 @@
-import path, { join, relative } from 'path';
-import { readdir, rm, unlink } from 'fs/promises';
-import pkg from '@/../package.json';
-import sidebar from '@/settings/sidebar.json';
-import { rmDirRecursive } from '@/utilities/server';
+import { join, resolve, relative } from 'path';
+import { readdir, unlink } from 'fs/promises';
+import pkg from '../../package.json';
+import sidebar from '../settings/sidebar.json';
+import { rmDirRecursive } from '../utilities/server';
 
 const project_prefix = pkg.name.slice(0, pkg.name.lastIndexOf('-') + 1); // 'react-tools-'
 const project = pkg.name.slice(pkg.name.lastIndexOf('-') + 1); // 'website'
-const docsDir = path.resolve(__dirname, `../app/docs`);
+const docsDir = resolve(__dirname, `../app/docs`);
 
 const docsclean = async () => {
-  const projectDir = await readdir(path.resolve(__dirname, '../../../../src'));
+  const projectDir = await readdir(resolve(__dirname, '../../../../src'));
 
   /** The list of PROJECTS */
   const PROJECTS = projectDir

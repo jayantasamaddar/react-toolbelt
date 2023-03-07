@@ -17,9 +17,15 @@ defaults to the document object).
 
 > **Note**: Provide only a single element, not the entire ref object.
 
-### `options`: { `bubbles`: boolean }
+### `options`: `FocusOptions`
 
 Whether the focus event should bubble or not.
+
+```ts
+interface FocusOptions {
+  bubbles: boolean;
+}
+```
 
 ### `callback`: (target: HTMLElement | EventTarget) => void
 

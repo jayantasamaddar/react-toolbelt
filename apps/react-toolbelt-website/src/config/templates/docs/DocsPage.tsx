@@ -3,7 +3,7 @@
 import { Breadcrumbs, Sidebar } from '@/components';
 import { useApp } from '@/context';
 import PageContent from './content.mdx';
-import headings from './headings.json'; // This is just a template, modifying does nothing.
+import headings from './headings.json';
 
 export default function Template() {
   const {
