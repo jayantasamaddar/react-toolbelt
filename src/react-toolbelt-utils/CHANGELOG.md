@@ -1,5 +1,18 @@
 # @react-toolbelt/utils
 
+## 0.2.0
+
+### Minor Changes
+
+- [`007e420`](https://github.com/jayantasamaddar/react-toolbelt/commit/007e42006c4251051c66c263da8eb1f5d3560fe1)
+  Thanks [@jayantasamaddar](https://github.com/jayantasamaddar)! - # New
+
+  - [x] `isExternal`: Checks whether a link is an external link or not. Useful
+        when working with React Router or Next Router which come with their own
+        Link components optimized for internal linking.
+  - [x] `getSelectedText`: Gets the current selected text.
+  - [x] `getSelectedOption`: Gets the current selected option.
+
 ## 0.1.1
 
 ### Patch Changes

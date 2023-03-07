@@ -1,5 +1,19 @@
 # @react-toolbelt/hooks
 
+## 0.2.0
+
+### Minor Changes
+
+- [`007e420`](https://github.com/jayantasamaddar/react-toolbelt/commit/007e42006c4251051c66c263da8eb1f5d3560fe1)
+  Thanks [@jayantasamaddar](https://github.com/jayantasamaddar)! - - [x] Added
+  `useFocus` and `useBlur` hooks.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`007e420`](https://github.com/jayantasamaddar/react-toolbelt/commit/007e42006c4251051c66c263da8eb1f5d3560fe1)]:
+  - @react-toolbelt/utils@0.2.0
+
 ## 0.1.1
 
 ### Patch Changes
