@@ -23,6 +23,7 @@
     "react",
     "react-hooks",
     "dom",
+    "react-toolbelt",
     "react-tools",
     "typescript",
     "javascript"

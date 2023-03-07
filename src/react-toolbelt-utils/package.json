@@ -11,9 +11,9 @@
     "dist/"
   ],
   "repository": {
-    "url": "https://github.com/jayantasamaddar/react-hooks-dom.git",
+    "url": "https://github.com/jayantasamaddar/react-toolbelt.git",
     "type": "git",
-    "directory": "src/react-tools-utils"
+    "directory": "src/react-toolbelt-utils"
   },
   "publishConfig": {
     "access": "public"
@@ -24,6 +24,7 @@
     "react-utils",
     "dom",
     "react-tools",
+    "react-toolbelt",
     "typescript",
     "javascript"
   ],
